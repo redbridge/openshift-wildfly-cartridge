@@ -291,7 +291,6 @@ function start() {
     ${WILDFLY_BIN_DIR}/standalone.sh -b $OPENSHIFT_WILDFLY_IP -bmanagement=$OPENSHIFT_WILDFLY_IP > $OPENSHIFT_WILDFLY_DIR/logs/server.log 2>&1 &
     PROCESS_ID=$!
     echo "$PROCESS_ID" > ${WILDFLY_PID_FILE}
-    cat ${WILDFLY_BIN_DIR}/../logs/server.log
 
     rc=0
     ishttpup || rc=$?
@@ -300,6 +299,7 @@ function start() {
       exit 1
     elif [ $rc -eq 2 ]; then
       echo "$cartridge_type process failed to start"
+      cat ${WILDFLY_BIN_DIR}/../logs/server.log
       exit 2
     fi
 
