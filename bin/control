@@ -291,6 +291,7 @@ function start() {
     ${WILDFLY_BIN_DIR}/standalone.sh -b $OPENSHIFT_WILDFLY_IP -bmanagement=$OPENSHIFT_WILDFLY_IP > $OPENSHIFT_WILDFLY_DIR/logs/server.log 2>&1 &
     PROCESS_ID=$!
     echo "$PROCESS_ID" > ${WILDFLY_PID_FILE}
+    cat {WILDFLY_BIN_DIR}/../logs/server.log
 
     rc=0
     ishttpup || rc=$?
